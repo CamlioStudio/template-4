@@ -1,0 +1,18 @@
+{
+  "name": "camlio-template-v3",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "studio"
+  ],
+  "scripts": {
+    "dev": "concurrently -n frontend,studio -c cyan,magenta \"npm run dev --workspace frontend\" \"npm run dev --workspace studio\"",
+    "predev": "npm run typegen --workspace frontend",
+    "type-check": "npm run type-check --workspace frontend && npm run type-check --workspace studio",
+    "lint": "npm run lint --workspace frontend",
+    "create-block": "node create-block.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
