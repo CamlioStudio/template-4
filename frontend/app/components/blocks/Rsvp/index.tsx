@@ -2,12 +2,15 @@
 import Image from "next/image";
 import { Container } from "@/app/components/Container";
 import { FlowerDecor } from "@/app/components/ui/FlowerDecor";
-import type { RsvpBlockProps } from "@/app/components/blocks/types";
+import type { Rsvp } from "@/sanity.types";
+
+type RsvpBlockProps = { block: Rsvp; index: number }
 
 const inputCls =
   "w-full bg-white px-3 py-4 text-sm text-ink placeholder:text-muted/60 outline-none focus:ring-2 focus:ring-ink/20";
 
-export default function RsvpBlock({ heading, subtitle }: RsvpBlockProps) {
+export default function RsvpBlock({ block }: RsvpBlockProps) {
+  const { heading, subtitle } = block
   return (
     <div className="bg-white pt-36">
       <section className="relative bg-cream py-10 pb-20">

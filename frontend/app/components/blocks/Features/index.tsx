@@ -1,9 +1,12 @@
 // About the Experience + 3-column features — Figma nodes 53:3131 + 24:2544
 import { Container } from '@/app/components/Container'
-import type { FeaturesBlockProps } from '@/app/components/blocks/types'
+import type { Features } from '@/sanity.types'
 import { FlowerDecor } from '../../ui/FlowerDecor'
 
-export default function FeaturesBlock({ heading, features }: FeaturesBlockProps) {
+type FeaturesBlockProps = { block: Features; index: number }
+
+export default function FeaturesBlock({ block }: FeaturesBlockProps) {
+  const { heading, features = [] } = block
   return (
     <section className="py-20">
       <Container className="relative flex flex-col items-center px-6 pt-24 text-center">

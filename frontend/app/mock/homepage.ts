@@ -66,7 +66,7 @@ export const galleryData: GalleryBlockProps = {
   subtitle: 'A collection of memories — each one unique, each one meaningful.',
   viewAllText: 'View Our Gallery',
   viewAllHref: '/gallery',
-  photos: [
+  photos: [MU*********||||
     '/snapshot-1.png',
     '/snapshot-2.png',
     '/snapshot-3.png',

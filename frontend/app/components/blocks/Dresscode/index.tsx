@@ -1,7 +1,7 @@
 // Dresscode / Step Into the Palette — Figma node 24:2363
 import Image from 'next/image'
 import { Container } from '@/app/components/Container'
-import type { DresscodeBlockProps } from '@/app/components/blocks/types'
+import type { Dresscode } from '@/sanity.types'
 import { FlowerDecor } from '../../ui/FlowerDecor'
 
 const PHOTO_COLORS = ['#c9b89a', '#b9a888', '#d4c5a9', '#a89878', '#c2b090', '#baa882'] as const
@@ -26,7 +26,8 @@ function renderHeadingWithScriptLetters(text: string) {
   return <>{parts}</>
 }
 
-export default function DresscodeBlock({ headingSerif, headingScript, body, photos = [] }: DresscodeBlockProps) {
+export default function DresscodeBlock({ block }: { block: Dresscode; index: number }) {
+  const { headingSerif, headingScript, body, photos = [] } = block
   const fullHeading = `${headingSerif} ${headingScript}`
   return (
     <section className="bg-cream py-20">
@@ -41,10 +42,10 @@ export default function DresscodeBlock({ headingSerif, headingScript, body, phot
           </div>
 
           <div className="grid grid-cols-3 gap-6">
-            {PHOTO_COLORS.map((color, i) => (
-              <div key={i} className="relative aspect-square overflow-hidden rounded-2xl" style={!photos[i] ? { background: `linear-gradient(145deg,${color},#9a856a)` } : undefined}>
+            {photos?.length > 0 && PHOTO_COLORS.map((color, i) => (
+              <div key={i} className="relative aspect-square overflow-hidden rounded-2xl" style={photos?.length > 0 && !photos[i] ? { background: `linear-gradient(145deg,${color},#9a856a)` } : undefined}>
                 {photos[i] && (
-                  <Image src={photos[i]} alt={`Dresscode photo ${i + 1}`} fill className="object-cover" />
+                  <Image src={photos[i] as string} alt={`Dresscode photo ${i + 1}`} fill className="object-cover" />
                 )}
               </div>
             ))}

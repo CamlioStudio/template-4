@@ -1,19 +1,24 @@
 // Hero banner — Figma node 53:3160
 import Image from 'next/image'
-import type { HeroBlockProps } from '@/app/components/blocks/types'
+import type { Hero } from '@/sanity.types'
 
-export default function HeroBlock({ eyebrow, headline, tagline, image }: HeroBlockProps) {
+type HeroBlockProps = { block: Hero; index: number }
+
+export default function HeroBlock({ block }: HeroBlockProps) {
+  const { eyebrow, headline, tagline, image } = block
   return (
     <section aria-label="Hero">
       <div className="relative mx-4 overflow-hidden sm:mx-6" style={{ minHeight: '609px' }}>
-        <Image
-          src={image}
-          alt=""
-          fill
-          priority
-          sizes="(max-width: 640px) calc(100vw - 2rem), calc(100vw - 3rem)"
-          className="object-cover object-center"
-        />
+        {image && (
+          <Image
+            src={image}
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 640px) calc(100vw - 2rem), calc(100vw - 3rem)"
+            className="object-cover object-center"
+          />
+        )}
         <div aria-hidden="true" className="absolute inset-0 bg-black/40" />
 
         <div className="relative z-10 flex min-h-152.25 flex-col items-center justify-center gap-4 px-6 py-20 text-center">

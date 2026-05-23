@@ -10,10 +10,12 @@
     "predev": "npm run typegen --workspace frontend",
     "type-check": "npm run type-check --workspace frontend && npm run type-check --workspace studio",
     "lint": "npm run lint --workspace frontend",
-    "create-block": "node create-block.js"
+    "create-block": "node create-block.js",
+    "migrate:homepage": "node --env-file=studio/.env scripts/migrate-homepage.mjs"
   },
   "devDependencies": {
-    "concurrently": "^9.0.0"
+    "concurrently": "^9.0.0",
+    "esbuild": "0.25.6"
   },
   "dependencies": {
     "@types/node": "^25.9.0",

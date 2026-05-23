@@ -4,7 +4,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { Container } from '@/app/components/Container'
-import type { TimelineBlockProps } from '@/app/components/blocks/types'
+import type { Timeline } from '@/sanity.types'
 import { FlowerDecor } from '../../ui/FlowerDecor'
 
 function getRemaining(target: Date) {
@@ -45,8 +45,9 @@ function renderHeadingWithScriptI(text: string) {
   )
 }
 
-export default function TimelineBlock({ heading, description, promoText, targetDate, ctaText, ctaHref, videoUrl, videoThumbnail }: TimelineBlockProps) {
-  const target = new Date(targetDate)
+export default function TimelineBlock({ block }: { block: Timeline; index: number }) {
+  const { heading, description, promoText, targetDate, ctaText, ctaHref, videoUrl, videoThumbnail } = block
+  const target = new Date(targetDate ?? Date.now())
   const { days, hours, minutes, seconds } = useCountdown(target)
 
   // ── Video state ────────────────────────────────────────────────────────────

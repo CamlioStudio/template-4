@@ -1,8 +1,11 @@
 // Quote / Full-bleed photo — Figma node 24:2402
 import Image from 'next/image'
-import type { QuoteBlockProps } from '@/app/components/blocks/types'
+import type { Quote } from '@/sanity.types'
 
-export default function QuoteBlock({ quote, image }: QuoteBlockProps) {
+type QuoteBlockProps = { block: Quote; index: number }
+
+export default function QuoteBlock({ block }: QuoteBlockProps) {
+  const { quote, image } = block
   return (
     <section className="bg-cream py-4">
       <div className="mx-4 sm:mx-6">

@@ -1,8 +1,11 @@
 // CTA Welcome Box — Figma node 24:2600
 import { Container } from '@/app/components/Container'
-import type { CtaBlockProps } from '@/app/components/blocks/types'
+import type { Cta } from '@/sanity.types'
 
-export default function CtaBlock({ body, ctaText, ctaHref }: CtaBlockProps) {
+type CtaBlockProps = { block: Cta; index: number }
+
+export default function CtaBlock({ block }: CtaBlockProps) {
+  const { body, ctaText, ctaHref } = block
   return (
     <section className="py-5 lg:py-20 text-center">
       <Container className="flex flex-col items-center gap-6 px-6">

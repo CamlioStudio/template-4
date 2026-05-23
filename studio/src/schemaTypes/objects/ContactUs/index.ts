@@ -1,11 +1,11 @@
-import { DocumentIcon } from '@sanity/icons'
+import { EnvelopeIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export const contactUs = defineType({
   name: 'contactUs',
   title: 'Contact Us',
   type: 'object',
-  icon: DocumentIcon,
+  icon: EnvelopeIcon,
   preview: {
     select: {
       title: 'title',
