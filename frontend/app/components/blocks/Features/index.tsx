@@ -10,7 +10,7 @@ export default function FeaturesBlock({ block }: FeaturesBlockProps) {
   return (
     <section className="lg:py-20 pb-20">
       <Container className="relative flex flex-col items-center px-6 pt-0 text-center">
-        <FlowerDecor className='-translate-y-16! lg:translate-y-8!' />
+        <FlowerDecor className='-translate-y-16!' />
         <h2 className="font-display text-section leading-[1.1] text-ink">{heading}</h2>
       </Container>
 
