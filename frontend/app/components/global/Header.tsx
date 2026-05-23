@@ -15,11 +15,11 @@ export function Header() {
     <>
       <header className="bg-paper">
         <Container className="relative flex h-20.75 items-center px-6">
-          {/* Hamburger icon — always visible */}
+          {/* Hamburger icon — mobile only */}
           <button
             aria-label="Open menu"
             onClick={() => setOpen(true)}
-            className="shrink-0 text-ink transition-opacity hover:opacity-60"
+            className="shrink-0 text-ink transition-opacity hover:opacity-60 lg:hidden"
           >
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
               <line x1="4" y1="9"  x2="24" y2="9"  stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />

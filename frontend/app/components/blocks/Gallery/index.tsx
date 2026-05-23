@@ -27,7 +27,7 @@ export default function GalleryBlock({
 }) {
   const { heading, subtitle, viewAllText, viewAllHref, photos = [] } = block;
   return (
-    <section className="overflow-hidden py-20 bg-white">
+    <section className="overflow-hidden lg;py-20 bg-white">
       <div className="relative flex flex-col items-center px-6 pt-24 text-center">
         <FlowerDecor />
         <h2 className="font-display text-section leading-[1.1] ">{heading}</h2>

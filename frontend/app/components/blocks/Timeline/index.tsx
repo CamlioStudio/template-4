@@ -253,7 +253,7 @@ export default function TimelineBlock({ block }: { block: Timeline; index: numbe
       </div>
 
       {/* Dark countdown section */}
-      <div className="relative overflow-hidden py-20">
+      <div className="relative overflow-hidden lg:py-20 pb-20">
         <Image src="/flower-left.png" alt="" aria-hidden="true" width={347} height={410} className="pointer-events-none absolute bottom-0 left-0 opacity-60" />
         <Image src="/flower-right.png" alt="" aria-hidden="true" width={347} height={410} className="pointer-events-none absolute bottom-0 right-0 opacity-60" />
 

@@ -20,7 +20,7 @@ export default function StoryBlock({ block }: StoryBlockProps) {
           </div>
 
           {/* Center text */}
-          <div className="relative flex flex-col justify-center px-8 py-5 pt-24 lg:py-16 lg:px-12">
+          <div className="relative flex flex-col justify-center px-8 py-5 lg:pt-24 lg:py-16 lg:px-12">
             <FlowerDecor src={decorImage ?? undefined} />
             <h2 className="font-display text-section leading-[1.05] text-ink">
               {heading}

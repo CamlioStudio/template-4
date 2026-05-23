@@ -4,16 +4,14 @@ import { Container } from "@/app/components/Container";
 import { FlowerDecor } from "@/app/components/ui/FlowerDecor";
 import type { Rsvp } from "@/sanity.types";
 
-type RsvpBlockProps = { block: Rsvp; index: number }
-
 const inputCls =
   "w-full bg-white px-3 py-4 text-sm text-ink placeholder:text-muted/60 outline-none focus:ring-2 focus:ring-ink/20";
 
-export default function RsvpBlock({ block }: RsvpBlockProps) {
+export default function RsvpBlock({ block }: { block: Rsvp; index: number }) {
   const { heading, subtitle } = block
   return (
-    <div className="bg-white pt-36">
-      <section className="relative bg-cream py-10 pb-20">
+    <div className="bg-white lg:pt-36 pt-48 -mb-30 lg:mb-0">
+      <section className="relative bg-cream py-10">
         {/* Bottom-left flower */}
         <Image
           src="/flower-left.png"
