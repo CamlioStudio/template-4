@@ -3,6 +3,18 @@ import { defineQuery } from 'next-sanity'
 export const getPageQuery = defineQuery(`*[_type == "page" && slug.current == $slug][0]{..., pageBuilder[]{...}}`)
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]{...}`)
 
+export const siteHeaderQuery = defineQuery(
+  `*[_type == "siteHeader" && _id == "siteHeader"][0]{ navLeft[]{ label, href }, navRight[]{ label, href }, rsvpLabel, rsvpHref }`
+)
+
+export const siteFooterQuery = defineQuery(
+  `*[_type == "siteFooter" && _id == "siteFooter"][0]{ navItems[]{ label, href }, brandName, brandYear, facebookUrl, instagramUrl, xUrl, copyrightText }`
+)
+
+export const siteSettingsQuery = defineQuery(
+  `*[_type == "siteSettings" && _id == "siteSettings"][0]{ siteTitle, siteDescription, coupleName }`
+)
+
 export const getHomePageQuery = defineQuery(`
   *[_type == "page" && slug.current == "home"][0]{
     _id,

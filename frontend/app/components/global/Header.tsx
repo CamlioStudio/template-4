@@ -4,12 +4,21 @@ import { useState } from 'react'
 import { Container } from "@/app/components/Container";
 import { Logo } from "../icons/logo";
 
-const NAV_LEFT  = [{ label: 'Home', href: '/' }, { label: 'Our Story', href: '/our-story' }, { label: 'Location', href: '/location' }]
-const NAV_RIGHT = [{ label: 'Gallery', href: '/gallery' }, { label: 'Blog', href: '/blog' }, { label: 'Pages', href: '/pages' }]
-const ALL_NAV   = [...NAV_LEFT, ...NAV_RIGHT, { label: 'RSVP', href: '/rsvp' }]
+type NavItem = { label: string; href: string }
 
-export function Header() {
+type HeaderProps = {
+  navLeft?: NavItem[]
+  navRight?: NavItem[]
+  rsvpLabel?: string
+  rsvpHref?: string
+}
+
+const DEFAULT_NAV_LEFT  = [{ label: 'Home', href: '/' }, { label: 'Our Story', href: '/our-story' }, { label: 'Location', href: '/location' }]
+const DEFAULT_NAV_RIGHT = [{ label: 'Gallery', href: '/gallery' }, { label: 'Blog', href: '/blog' }, { label: 'Pages', href: '/pages' }]
+
+export function Header({ navLeft = DEFAULT_NAV_LEFT, navRight = DEFAULT_NAV_RIGHT, rsvpLabel = 'RSVP', rsvpHref = '/rsvp' }: HeaderProps) {
   const [open, setOpen] = useState(false)
+  const allNav = [...navLeft, ...navRight, { label: rsvpLabel, href: rsvpHref }]
 
   return (
     <>
@@ -30,7 +39,7 @@ export function Header() {
 
           {/* Left nav — desktop only */}
           <nav className="ml-8 hidden items-center gap-8 text-sm text-muted lg:flex">
-            {NAV_LEFT.map(({ label, href }) => (
+            {navLeft.map(({ label, href }) => (
               <a key={label} href={href} className="transition-colors hover:text-ink">{label}</a>
             ))}
           </nav>
@@ -46,18 +55,18 @@ export function Header() {
           {/* Right nav + RSVP — desktop */}
           <div className="ml-auto hidden items-center gap-8 lg:flex">
             <nav className="flex items-center gap-8 text-sm text-muted">
-              {NAV_RIGHT.map(({ label, href }) => (
+              {navRight.map(({ label, href }) => (
                 <a key={label} href={href} className="transition-colors hover:text-ink">{label}</a>
               ))}
             </nav>
-            <a href="/rsvp" className="rounded-full border border-ink px-6 py-2.5 text-sm text-ink transition-colors hover:bg-ink hover:text-paper">
-              RSVP
+            <a href={rsvpHref} className="rounded-full border border-ink px-6 py-2.5 text-sm text-ink transition-colors hover:bg-ink hover:text-paper">
+              {rsvpLabel}
             </a>
           </div>
 
           {/* Mobile RSVP only */}
-          <a href="/rsvp" className="shrink-0 rounded-full border border-ink px-4 py-2 text-xs text-ink transition-colors hover:bg-ink hover:text-paper lg:hidden">
-            RSVP
+          <a href={rsvpHref} className="shrink-0 rounded-full border border-ink px-4 py-2 text-xs text-ink transition-colors hover:bg-ink hover:text-paper lg:hidden">
+            {rsvpLabel}
           </a>
         </Container>
       </header>
@@ -84,7 +93,7 @@ export function Header() {
 
         {/* Nav items — centered */}
         <nav className="flex flex-1 flex-col items-center justify-center gap-10">
-          {ALL_NAV.map(({ label, href }) => (
+          {allNav.map(({ label, href }) => (
             <a
               key={label}
               href={href}

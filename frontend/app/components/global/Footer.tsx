@@ -1,5 +1,24 @@
 import { Container } from '@/app/components/Container'
 
+type NavItem = { label: string; href: string }
+
+type FooterProps = {
+  navItems?: NavItem[]
+  brandName?: string
+  brandYear?: string
+  facebookUrl?: string | null
+  instagramUrl?: string | null
+  xUrl?: string | null
+  copyrightText?: string
+}
+
+const DEFAULT_NAV_ITEMS: NavItem[] = [
+  { label: 'Home',      href: '/'          },
+  { label: 'Our Story', href: '/our-story' },
+  { label: 'Gallery',   href: '/gallery'   },
+  { label: 'RSVP',      href: '/rsvp'      },
+]
+
 function FacebookIcon() {
   return (
     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" aria-hidden="true">
@@ -27,45 +46,51 @@ function XIcon() {
   )
 }
 
-const NAV_ITEMS = ['Home', 'Our Story', 'Gallery', 'RSVP']
-
-export function Footer() {
+export function Footer({
+  navItems = DEFAULT_NAV_ITEMS,
+  brandName = 'Camlio',
+  brandYear = '2026',
+  facebookUrl,
+  instagramUrl,
+  xUrl,
+  copyrightText = 'Copyright © 2025 Rometheme. All Rights Reserved.',
+}: FooterProps) {
   return (
     <footer className="bg-paper">
       <Container className="px-6 pb-6 pt-12 text-center">
 
         {/* Nav links */}
         <nav className="flex flex-wrap justify-center gap-5">
-          {NAV_ITEMS.map((item) => (
+          {navItems.map((item) => (
             <a
-              key={item}
-              href={`/${item.toLowerCase().replace(' ', '-')}`}
+              key={item.label}
+              href={item.href}
               className="rounded-full px-8 py-4 text-ink transition-colors hover:bg-accent"
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </nav>
 
         {/* Brand row */}
         <div className="relative mt-16 flex max-w-4xl mx-auto items-center justify-center">
-          <span className="absolute left-0 hidden font-display text-[2rem] leading-[1.1] text-ink sm:inline">Camlio</span>
+          <span className="absolute left-0 hidden font-display text-[2rem] leading-[1.1] text-ink sm:inline">{brandName}</span>
           <h2 className="font-display text-display leading-[1.1] text-ink">
             Wedding<br />Planner
           </h2>
-          <span className="absolute right-0 hidden font-display text-[2rem] leading-[1.1] text-ink sm:inline">2026</span>
+          <span className="absolute right-0 hidden font-display text-[2rem] leading-[1.1] text-ink sm:inline">{brandYear}</span>
         </div>
 
         {/* Social icons */}
         <div className="mt-10 flex justify-center gap-3">
-          <a href="#" aria-label="Facebook"><FacebookIcon /></a>
-          <a href="#" aria-label="Instagram"><InstagramIcon /></a>
-          <a href="#" aria-label="X"><XIcon /></a>
+          {facebookUrl  && <a href={facebookUrl}  aria-label="Facebook"><FacebookIcon /></a>}
+          {instagramUrl && <a href={instagramUrl} aria-label="Instagram"><InstagramIcon /></a>}
+          {xUrl         && <a href={xUrl}         aria-label="X"><XIcon /></a>}
         </div>
 
         {/* Divider + copyright */}
         <div className="mt-6 border-t border-ink pt-4">
-          <p className="text-ink">Copyright &copy; 2025 Rometheme. All Rights Reserved.</p>
+          <p className="text-ink">{copyrightText}</p>
         </div>
       </Container>
     </footer>

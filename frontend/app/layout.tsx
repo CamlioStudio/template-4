@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Instrument_Serif, Kapakana, Work_Sans } from 'next/font/google'
 import { Layout } from '@/app/components/global/Layout'
+import { getSiteSettings } from '@/sanity/lib/service'
 import './globals.css'
 
 const workSans = Work_Sans({
@@ -20,9 +21,12 @@ const kapakana = Kapakana({
   variable: '--font-kapakana',
 })
 
-export const metadata: Metadata = {
-  title: 'Laila & Blaize',
-  description: 'Wedding website contact page scaffold built with Camlio.',
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings()
+  return {
+    title: settings?.siteTitle ?? 'Laila & Blaize',
+    description: settings?.siteDescription ?? 'Wedding website contact page scaffold built with Camlio.',
+  }
 }
 
 export default function RootLayout({
