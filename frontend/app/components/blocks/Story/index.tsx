@@ -1,12 +1,13 @@
 // Our Story — Figma node 24:2591
 import Image from 'next/image'
 import { FlowerDecor } from '@/app/components/ui/FlowerDecor'
+import { HighlightedHeading } from '@/app/components/ui/HighlightedHeading'
 import type { Story } from '@/sanity.types'
 
 type StoryBlockProps = { block: Story; index: number }
 
 export default function StoryBlock({ block }: StoryBlockProps) {
-  const { heading, body, decorImage, imageLeft, imageRightFull, imageRightSmall } = block
+  const { heading, body, decorImage, imageLeft, imageRightFull, imageRightSmall, highlights } = block
   return (
     <section className="overflow-hidden">
       <div className="mx-0 sm:mx-6">
@@ -22,9 +23,14 @@ export default function StoryBlock({ block }: StoryBlockProps) {
           {/* Center text */}
           <div className="relative flex flex-col justify-center px-8 py-5 lg:pt-24 lg:py-16 lg:px-12">
             <FlowerDecor src={decorImage ?? undefined} />
-            <h2 className="font-display text-section leading-[1.05] text-ink">
-              {heading}
-            </h2>
+            {heading && (
+              <HighlightedHeading
+                as="h2"
+                text={heading}
+                highlights={highlights}
+                className="font-display text-section leading-[1.05] text-ink lg:w-1/2"
+              />
+            )}
             <p className="mt-6 max-w-121.5 text-sm leading-relaxed text-muted">{body}</p>
           </div>
 

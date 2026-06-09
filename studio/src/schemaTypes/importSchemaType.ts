@@ -9,6 +9,10 @@ import { rsvp } from './objects/Rsvp'
 import { quote } from './objects/Quote'
 import { dresscode } from './objects/Dresscode'
 import { blog } from './objects/Blog'
+import { couple } from './objects/Couple'
+import { journey } from './objects/Journey'
+import { bridesmaidsGroomsmen } from './objects/BridesmaidsGroomsmen'
+import { wishes } from './objects/Wishes'
 
 export const importSchemaTypes = [
   contactUs,
@@ -22,4 +26,8 @@ export const importSchemaTypes = [
   quote,
   dresscode,
   blog,
+  couple,
+  journey,
+  bridesmaidsGroomsmen,
+  wishes,
 ]

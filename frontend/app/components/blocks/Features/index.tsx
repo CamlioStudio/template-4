@@ -2,16 +2,24 @@
 import { Container } from '@/app/components/Container'
 import type { Features } from '@/sanity.types'
 import { FlowerDecor } from '../../ui/FlowerDecor'
+import { HighlightedHeading } from '@/app/components/ui/HighlightedHeading'
 
 type FeaturesBlockProps = { block: Features; index: number }
 
 export default function FeaturesBlock({ block }: FeaturesBlockProps) {
-  const { heading, features = [] } = block
+  const { heading, features = [], highlights } = block
   return (
     <section className="lg:py-20 pb-20">
       <Container className="relative flex flex-col items-center px-6 pt-0 text-center">
         <FlowerDecor className='-translate-y-16!' />
-        <h2 className="font-display text-section leading-[1.1] text-ink">{heading}</h2>
+        {heading && (
+          <HighlightedHeading
+            as="h2"
+            text={heading}
+            highlights={highlights}
+            className="font-display text-section leading-[1.1] text-ink"
+          />
+        )}
       </Container>
 
       <Container className="mt-16 px-6 lg:px-30">

@@ -65,7 +65,7 @@ export function Footer({
             <a
               key={item.label}
               href={item.href}
-              className="rounded-full px-8 py-4 text-ink transition-colors hover:bg-accent"
+              className="rounded-full px-8 py-4 text-ink transition-colors hover:bg-accent text-sm"
             >
               {item.label}
             </a>

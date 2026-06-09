@@ -6,9 +6,9 @@ import Image from 'next/image'
 import { Container } from '@/app/components/Container'
 import type { Timeline } from '@/sanity.types'
 import { FlowerDecor } from '../../ui/FlowerDecor'
+import { HighlightedHeading } from '@/app/components/ui/HighlightedHeading'
 
-function getRemaining(target: Date) {
-  const diff = Math.max(0, target.getTime() - Date.now())
+function getRemaining(target: Date) {  const diff = Math.max(0, target.getTime() - Date.now())
   return {
     days:    Math.floor(diff / 86_400_000),
     hours:   Math.floor((diff % 86_400_000) / 3_600_000),
@@ -32,21 +32,9 @@ function formatTime(seconds: number): string {
   return `${m}:${s.toString().padStart(2, '0')}`
 }
 
-function renderHeadingWithScriptI(text: string) {
-  // Highlight the first capital I at the start of a word (e.g. "Invited")
-  const match = text.match(/^(.*?\b)(I)(\w+.*)$/)
-  if (!match) return <>{text}</>
-  return (
-    <>
-      {match[1]}
-      <span className="font-script text-display not-italic ml-5">{match[2]}</span>
-      {match[3]}
-    </>
-  )
-}
 
 export default function TimelineBlock({ block }: { block: Timeline; index: number }) {
-  const { heading, description, promoText, targetDate, ctaText, ctaHref, videoUrl, videoThumbnail } = block
+  const { heading, description, promoText, targetDate, ctaText, ctaHref, videoUrl, videoThumbnail, highlights } = block
   const target = new Date(targetDate ?? Date.now())
   const { days, hours, minutes, seconds } = useCountdown(target)
 
@@ -259,7 +247,14 @@ export default function TimelineBlock({ block }: { block: Timeline; index: numbe
 
           <Container className="relative z-10 flex flex-col items-center gap-10 px-6 pt-36 text-center">
           <FlowerDecor className='translate-y-20' />
-          {heading && <h2 className="font-display text-section leading-[1.1]">{renderHeadingWithScriptI(heading)}</h2>}
+          {heading && (
+            <HighlightedHeading
+              as="h2"
+              text={heading}
+              highlights={highlights}
+              className="font-display text-section leading-[1.1]"
+            />
+          )}
           {description && <p className="text-muted max-w-122">{description}</p>}
           {promoText && <p className="font-display text-[96px] leading-[1.1]">{promoText}</p>}
 

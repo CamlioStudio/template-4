@@ -24,6 +24,7 @@ export type Hero = {
   cmsTitle?: string
   eyebrow?: string
   headline?: string
+  highlights?: HighlightItem[] | null
   tagline?: string
   /** Projected URL string from GROQ: image.asset->url */
   image?: string | null
@@ -35,12 +36,15 @@ export type Cta = {
   body?: string
   ctaText?: string
   ctaHref?: string
+  /** Projected URL string from GROQ: backgroundImage.asset->url */
+  backgroundImage?: string | null
 }
 
 export type Story = {
   _type: 'story'
   cmsTitle?: string
   heading?: string
+  highlights?: HighlightItem[] | null
   body?: string
   /** Projected URL string from GROQ: decorImage.asset->url */
   decorImage?: string | null
@@ -61,6 +65,7 @@ export type Features = {
   _type: 'features'
   cmsTitle?: string
   heading?: string
+  highlights?: HighlightItem[] | null
   features?: FeatureItem[]
 }
 
@@ -68,6 +73,7 @@ export type Timeline = {
   _type: 'timeline'
   cmsTitle?: string
   heading?: string
+  highlights?: HighlightItem[] | null
   description?: string
   promoText?: string
   /** ISO date-time string */
@@ -130,6 +136,78 @@ export type Blog = {
   articles?: BlogArticle[]
 }
 
+export type SocialLink = {
+  platform?: string
+  href?: string
+}
+
+export type CouplePerson = {
+  name?: string
+  role?: string
+  bio?: string
+  /** Projected URL string from GROQ: photo.asset->url */
+  photo?: string | null
+  socials?: SocialLink[]
+}
+
+export type HighlightItem = {
+  char?: string | null
+  charIndex?: number | null
+}
+
+export type Couple = {
+  _type: 'couple'
+  cmsTitle?: string
+  heading?: string
+  highlights?: HighlightItem[] | null
+  /** Projected URL string from GROQ: decorImage.asset->url */
+  decorImage?: string | null
+  people?: CouplePerson[]
+}
+
+export type JourneyItem = {
+  year?: string
+  heading?: string
+  body?: string
+  /** Projected URL string from GROQ: image.asset->url */
+  image?: string | null
+}
+
+export type Journey = {
+  _type: 'journey'
+  cmsTitle?: string
+  items?: JourneyItem[]
+}
+
+export type BridesmaidsGroomsmenMember = {
+  name?: string
+  role?: string
+  /** Projected URL string from GROQ: photo.asset->url */
+  photo?: string | null
+}
+
+export type BridesmaidsGroomsmen = {
+  _type: 'bridesmaidsGroomsmen'
+  cmsTitle?: string
+  heading?: string
+  highlights?: HighlightItem[] | null
+  description?: string
+  members?: BridesmaidsGroomsmenMember[]
+}
+
+export type WishesQuote = {
+  quote?: string
+  author?: string
+}
+
+export type Wishes = {
+  _type: 'wishes'
+  cmsTitle?: string
+  heading?: string
+  highlights?: HighlightItem[] | null
+  quotes?: WishesQuote[]
+}
+
 export type PageBuilderSection =
   | ContactUs
   | Hero
@@ -142,6 +220,10 @@ export type PageBuilderSection =
   | Quote
   | Dresscode
   | Blog
+  | Couple
+  | Journey
+  | BridesmaidsGroomsmen
+  | Wishes
 
 export type Page = {
   _type: 'page'

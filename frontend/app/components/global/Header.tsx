@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Container } from "@/app/components/Container";
 import { Logo } from "../icons/logo";
+import Link from 'next/link';
 
 type NavItem = { label: string; href: string }
 
@@ -38,15 +39,17 @@ export function Header({ navLeft = DEFAULT_NAV_LEFT, navRight = DEFAULT_NAV_RIGH
           </button>
 
           {/* Left nav — desktop only */}
-          <nav className="ml-8 hidden items-center gap-8 text-sm text-muted lg:flex">
+          <nav className="ml-8 hidden items-center gap-8 text-sm text-muted lg:flex relative z-10">
             {navLeft.map(({ label, href }) => (
               <a key={label} href={href} className="transition-colors hover:text-ink">{label}</a>
             ))}
           </nav>
 
           {/* Center logo — absolutely centered */}
-          <div className="pointer-events-none absolute inset-x-0 flex justify-center">
-            <Logo />
+          <div className='absolute inset-x-0 flex justify-center'>
+            <Link href="/">
+              <Logo />
+            </Link>
           </div>
 
           {/* Mobile spacer */}

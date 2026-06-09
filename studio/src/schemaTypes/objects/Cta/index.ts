@@ -22,5 +22,12 @@ export const cta = defineType({
     defineField({ name: 'body', title: 'Body', type: 'text', rows: 3 }),
     defineField({ name: 'ctaText', title: 'CTA Text', type: 'string' }),
     defineField({ name: 'ctaHref', title: 'CTA Link', type: 'string' }),
+    defineField({
+      name: 'backgroundImage',
+      title: 'Background Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [{ name: 'alt', type: 'string', title: 'Alt Text' }],
+    }),
   ],
 })

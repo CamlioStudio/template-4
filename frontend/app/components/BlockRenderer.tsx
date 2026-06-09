@@ -12,6 +12,10 @@ import RsvpBlock from '@/app/components/blocks/Rsvp'
 import QuoteBlock from '@/app/components/blocks/Quote'
 import DresscodeBlock from '@/app/components/blocks/Dresscode'
 import BlogBlock from '@/app/components/blocks/Blog'
+import CoupleBlock from '@/app/components/blocks/Couple'
+import JourneyBlock from '@/app/components/blocks/Journey'
+import BridesmaidsGroomsmenBlock from '@/app/components/blocks/BridesmaidsGroomsmen'
+import WishesBlock from '@/app/components/blocks/Wishes'
 
 type BlockRendererProps = {
   block: PageBuilderSection
@@ -30,6 +34,10 @@ const blocks = {
   quote: QuoteBlock,
   dresscode: DresscodeBlock,
   blog: BlogBlock,
+  couple: CoupleBlock,
+  journey: JourneyBlock,
+  bridesmaidsGroomsmen: BridesmaidsGroomsmenBlock,
+  wishes: WishesBlock,
 } as const
 
 export function BlockRenderer({ block, index }: BlockRendererProps) {

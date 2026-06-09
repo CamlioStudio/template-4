@@ -10,4 +10,8 @@ export const importPageBuilderTypes = [
   { type: 'quote' },
   { type: 'dresscode' },
   { type: 'blog' },
+  { type: 'couple' },
+  { type: 'journey' },
+  { type: 'bridesmaidsGroomsmen' },
+  { type: 'wishes' },
 ]
