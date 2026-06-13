@@ -4,6 +4,9 @@ import Image from 'next/image'
 import { Container } from '@/app/components/Container'
 import { HighlightedHeading } from '@/app/components/ui/HighlightedHeading'
 import type { LocationVenue } from '@/sanity.types'
+import { cn } from "../../../../sanity/lib/utils";
+
+
 
 // Pin icon SVG
 function PinIcon() {
@@ -48,36 +51,36 @@ function ClockIcon() {
 type LocationVenueBlockProps = { block: LocationVenue; index: number }
 
 export default function LocationVenueBlock({ block }: LocationVenueBlockProps) {
-  const { title, highlights, venueName, time, mapImage, images, imagesPosition } = block
+  const { title, highlights, venueName, time, mapLocation, images, imagesPosition } = block
   const isImagesLeft = imagesPosition === 'left'
 
   const textContent = (
-    <div className="flex flex-col gap-10 lg:gap-11">
+    <div className={cn('flex', 'flex-col', 'gap-10', 'lg:gap-11')}>
       {/* Title */}
       {title && (
-        <div className="flex flex-col gap-8">
+        <div className={cn('flex', 'flex-col', 'gap-8')}>
           <HighlightedHeading
             as="h2"
             text={title}
             highlights={highlights}
-            className="font-display not-italic text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] text-ink"
+            className={cn('font-display', 'not-italic', 'text-[clamp(2.5rem,5vw,4rem)]', 'leading-[1.1]', 'text-ink')}
             highlightClassName="font-script text-[6rem] leading-[0.7]"
           />
 
           {/* Venue details */}
-          <div className="flex flex-col gap-3">
+          <div className={cn('flex', 'flex-col', 'gap-3')}>
             {venueName && (
-              <div className="flex items-center gap-5 text-ink">
+              <div className={cn('flex', 'items-center', 'gap-5', 'text-ink')}>
                 <PinIcon />
-                <span className="font-display not-italic text-[clamp(1.25rem,2.5vw,2rem)] leading-[1.1]">
+                <span className={cn('font-display', 'not-italic', 'text-[clamp(1.25rem,2.5vw,2rem)]', 'leading-[1.1]')}>
                   {venueName}
                 </span>
               </div>
             )}
             {time && (
-              <div className="flex items-center gap-5 text-ink">
+              <div className={cn('flex', 'items-center', 'gap-5', 'text-ink')}>
                 <ClockIcon />
-                <span className="font-display not-italic text-[clamp(1.25rem,2.5vw,2rem)] leading-[1.1]">
+                <span className={cn('font-display', 'not-italic', 'text-[clamp(1.25rem,2.5vw,2rem)]', 'leading-[1.1]')}>
                   {time}
                 </span>
               </div>
@@ -86,29 +89,23 @@ export default function LocationVenueBlock({ block }: LocationVenueBlockProps) {
         </div>
       )}
 
-      {/* Map */}
-      {mapImage && (
-        <div className="relative h-60 w-full overflow-hidden lg:h-82">
-          <Image
-            src={mapImage}
-            alt="Venue map"
-            fill
-            sizes="(max-width: 768px) 100vw, 600px"
-            className="object-cover"
-          />
-        </div>
-      )}
-      {!mapImage && (
-        <div className="map-panel h-60 w-full lg:h-82" aria-hidden="true" />
+      {/* Map — mapLocation stores a full Google Maps iframe HTML snippet */}
+      {mapLocation ? (
+        <div
+          className={cn('h-60', 'w-full', 'overflow-hidden', 'rounded-xl', 'lg:h-82', '[&_iframe]:h-full', '[&_iframe]:w-full', '[&_iframe]:border-0')}
+          dangerouslySetInnerHTML={{ __html: mapLocation }}
+        />
+      ) : (
+        <div className={cn('map-panel', 'h-60', 'w-full', 'rounded-xl', 'lg:h-82')} aria-hidden="true" />
       )}
     </div>
   )
 
   const imageCollage = images && images.length > 0 && (
-    <div className="relative hidden lg:block" aria-hidden="true">
+    <div className={cn('relative', 'hidden', 'lg:block')} aria-hidden="true">
       {/* Primary large image — top, offset towards center */}
       {images[0] && (
-        <div className={`absolute top-0 h-[475px] w-96 overflow-hidden ${isImagesLeft ? 'left-0' : 'right-0'}`}>
+        <div className={`absolute rounded-xl top-0 h-[475px] w-10/12 overflow-hidden ${isImagesLeft ? 'left-0' : 'right-0'}`}>
           <Image
             src={images[0]}
             alt=""
@@ -120,7 +117,7 @@ export default function LocationVenueBlock({ block }: LocationVenueBlockProps) {
       )}
       {/* Secondary small image — bottom opposite corner */}
       {images[1] && (
-        <div className={`absolute bottom-0 h-55 w-45 overflow-hidden ${isImagesLeft ? 'right-0' : 'left-0'}`}>
+        <div className={`absolute rounded-xl bottom-0 h-55 w-45 overflow-hidden ${isImagesLeft ? 'right-0' : 'left-0'}`}>
           <Image
             src={images[1]}
             alt=""
@@ -132,7 +129,7 @@ export default function LocationVenueBlock({ block }: LocationVenueBlockProps) {
       )}
       {/* Third image if present */}
       {images[2] && (
-        <div className={`absolute top-12 h-42 w-32 overflow-hidden ${isImagesLeft ? 'right-0' : 'left-0'}`}>
+        <div className={`absolute rounded-xl top-12 h-42 w-32 overflow-hidden ${isImagesLeft ? 'right-0' : 'left-0'}`}>
           <Image
             src={images[2]}
             alt=""
@@ -143,20 +140,19 @@ export default function LocationVenueBlock({ block }: LocationVenueBlockProps) {
         </div>
       )}
       {/* Invisible spacer to reserve space */}
-      <div className="h-[550px] w-[486px]" />
+      <div className={cn('h-[550px]', 'w-full')} />
     </div>
   )
 
   return (
-    <section className="py-16 lg:py-20 bg-cream">
+    <section className={cn('py-16', 'lg:py-20', 'bg-cream')}>
       <Container>
         <div
-          className={`flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16 xl:gap-32 ${
-            isImagesLeft ? 'lg:flex-row-reverse' : ''
-          }`}
+          className={`flex flex-col gap-0 lg:flex-row lg:items-start lg:gap-16 xl:gap-32 ${isImagesLeft ? 'lg:flex-row-reverse' : ''
+            }`}
         >
           <div className="flex-1">{textContent}</div>
-          {imageCollage && <div className="shrink-0">{imageCollage}</div>}
+          {imageCollage && <div className="flex-1">{imageCollage}</div>}
         </div>
       </Container>
     </section>

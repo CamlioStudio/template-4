@@ -5,6 +5,7 @@ import { Container } from '@/app/components/Container'
 import { FlowerDecor } from '@/app/components/ui/FlowerDecor'
 import { HighlightedHeading } from '@/app/components/ui/HighlightedHeading'
 import type { Gift } from '@/sanity.types'
+import { cn } from "../../../../sanity/lib/utils";
 
 function PinIcon() {
   return (
@@ -38,96 +39,91 @@ export default function GiftBlock({ block }: GiftBlockProps) {
     physicalGiftTitle,
     physicalGiftDescription,
     physicalAddress,
-    physicalMapImage,
+    physicalMapLocation,
     bankTransferTitle,
     bankTransferDescription,
     qrCodeImage,
   } = block
 
   return (
-    <section className="py-16 lg:py-24 bg-cream">
+    <section className={cn('py-16', 'lg:py-24', 'bg-cream')}>
       <Container>
         {/* Card */}
-        <div className="mx-auto max-w-3xl bg-white px-10 py-16 panel-shadow">
+        <div className={cn('mx-auto', 'max-w-3xl', 'bg-white', 'px-10', 'py-16', 'panel-shadow')}>
           {/* Heading section */}
-          <div className="flex flex-col items-center gap-8 text-center">
-            <div className="flex flex-col items-center">
+          <div className={cn('flex', 'flex-col', 'items-center', 'gap-8', 'text-center')}>
+            <div className={cn('relative', 'flex', 'flex-col', 'items-center')}>
               <FlowerDecor
                 src={decorImage ?? undefined}
-                className="mx-auto mb-4"
+                className={cn('mx-auto', 'mb-4', 'lg:-translate-y-10')}
               />
               {heading && (
                 <HighlightedHeading
                   as="h2"
                   text={heading}
                   highlights={highlights}
-                  className="font-display not-italic text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] text-ink"
+                  className={cn('font-display', 'not-italic', 'text-[clamp(2.5rem,5vw,4rem)]', 'leading-[1.1]', 'text-ink')}
                   highlightClassName="font-script text-[6rem] leading-[0.7]"
                 />
               )}
             </div>
             {description && (
-              <p className="max-w-md font-body text-body leading-relaxed text-muted">{description}</p>
+              <p className={cn('max-w-md', 'font-body', 'text-body', 'leading-relaxed', 'text-muted')}>{description}</p>
             )}
           </div>
 
           {/* Divider */}
-          <div className="my-10 h-px w-full bg-paper" />
+          <div className={cn('my-10', 'h-px', 'w-full', 'bg-paper')} />
 
           {/* Two sub-sections */}
-          <div className="flex flex-col gap-12">
+          <div className={cn('flex', 'flex-col', 'gap-12')}>
             {/* Physical Gift */}
-            {(physicalGiftTitle || physicalAddress || physicalMapImage) && (
-              <div className="flex flex-col items-center gap-5 text-center">
+            {(physicalGiftTitle || physicalAddress || physicalMapLocation) && (
+              <div className={cn('flex', 'flex-col', 'items-center', 'gap-5', 'text-center')}>
                 {physicalGiftTitle && (
-                  <h3 className="font-display not-italic text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] text-ink">
+                  <h3 className={cn('font-display', 'not-italic', 'text-[clamp(1.5rem,3vw,2.5rem)]', 'leading-[1.1]', 'text-ink')}>
                     {physicalGiftTitle}
                   </h3>
                 )}
                 {physicalGiftDescription && (
-                  <p className="max-w-xs font-body text-body leading-relaxed text-muted">
+                  <p className={cn('max-w-xs', 'font-body', 'text-body', 'leading-relaxed', 'text-muted')}>
                     {physicalGiftDescription}
                   </p>
                 )}
                 {physicalAddress && (
-                  <div className="flex items-center gap-3 text-ink">
+                  <div className={cn('flex', 'items-center', 'gap-3', 'text-ink')}>
                     <PinIcon />
-                    <span className="font-display not-italic text-sub leading-[1.1]">
+                    <span className={cn('font-display', 'not-italic', 'text-sub', 'leading-[1.1]')}>
                       {physicalAddress}
                     </span>
                   </div>
                 )}
-                {physicalMapImage ? (
-                  <div className="relative mt-2 h-48 w-full max-w-sm overflow-hidden">
-                    <Image
-                      src={physicalMapImage}
-                      alt="Gift address map"
-                      fill
-                      sizes="400px"
-                      className="object-cover"
-                    />
-                  </div>
+                {physicalMapLocation ? (
+                  <div
+                    className={cn('mt-2', 'h-48', 'w-full', 'max-w-sm', 'overflow-hidden', 'rounded-xl', '[&_iframe]:h-full', '[&_iframe]:w-full', '[&_iframe]:border-0')}
+                    dangerouslySetInnerHTML={{ __html: physicalMapLocation }}
+                  />
                 ) : (
-                  <div className="map-panel mt-2 h-48 w-full max-w-sm" aria-hidden="true" />
+                  <div className={cn('map-panel', 'mt-2', 'h-48', 'w-full', 'max-w-sm', 'rounded-xl')} aria-hidden="true" />
                 )}
               </div>
             )}
 
             {/* Bank Transfer */}
             {(bankTransferTitle || bankTransferDescription || qrCodeImage) && (
-              <div className="flex flex-col items-center gap-5 text-center">
+              <div className={cn('flex', 'flex-col', 'items-center', 'gap-5', 'text-center')}>
                 {bankTransferTitle && (
-                  <h3 className="font-display not-italic text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.1] text-ink">
+                  <h3 className={cn('font-display', 'not-italic', 'text-[clamp(1.5rem,3vw,2.5rem)]', 'leading-[1.1]', 'text-ink')}>
                     {bankTransferTitle}
                   </h3>
                 )}
                 {bankTransferDescription && (
-                  <p className="max-w-xs font-body text-body leading-relaxed text-muted">
+                  <p className={cn('max-w-xs', 'font-body', 'text-body', 'leading-relaxed', 'text-muted')}>
                     {bankTransferDescription}
                   </p>
                 )}
                 {qrCodeImage ? (
-                  <div className="relative h-44 w-44 overflow-hidden">
+                  <div className={cn('relative', 'h-44', 'w-44', 'overflow-hidden')}>
                     <Image
                       src={qrCodeImage}
                       alt="QR code for bank transfer"
@@ -137,7 +133,7 @@ export default function GiftBlock({ block }: GiftBlockProps) {
                     />
                   </div>
                 ) : (
-                  <div className="hero-checker h-44 w-44" aria-hidden="true" />
+                  <div className={cn('hero-checker', 'h-44', 'w-44')} aria-hidden="true" />
                 )}
               </div>
             )}

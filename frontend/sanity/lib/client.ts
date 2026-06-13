@@ -5,5 +5,5 @@ export const sanityClient = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: false, // ISR handles caching via next.revalidate — CDN would serve stale data
 })

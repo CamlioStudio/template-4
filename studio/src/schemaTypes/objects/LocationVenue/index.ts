@@ -69,12 +69,11 @@ export const locationVenue = defineType({
       description: 'e.g. "5:00 PM" or "6:30 PM until late"',
     }),
     defineField({
-      name: 'mapImage',
-      title: 'Map Image',
-      type: 'image',
-      options: { hotspot: true },
-      fields: [{ name: 'alt', type: 'string', title: 'Alt Text' }],
-      description: 'Screenshot or image of the venue map.',
+      name: 'mapLocation',
+      title: 'Map Location',
+      type: 'string',
+      description:
+        'Paste a Google Maps embed URL (https://maps.google.com/maps?q=...) or just the venue address — it will be embedded as an interactive map.',
     }),
     defineField({
       name: 'images',

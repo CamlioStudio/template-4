@@ -215,8 +215,8 @@ export type LocationVenue = {
   highlights?: HighlightItem[] | null
   venueName?: string
   time?: string
-  /** Projected URL string from GROQ: mapImage.asset->url */
-  mapImage?: string | null
+  /** Plain string: Google Maps embed URL or venue address */
+  mapLocation?: string | null
   /** Projected URL strings from GROQ: images[].asset->url */
   images?: (string | null)[]
   imagesPosition?: string
@@ -233,8 +233,8 @@ export type Gift = {
   physicalGiftTitle?: string
   physicalGiftDescription?: string
   physicalAddress?: string
-  /** Projected URL string from GROQ: physicalMapImage.asset->url */
-  physicalMapImage?: string | null
+  /** Plain string: Google Maps iframe HTML for the physical gift address */
+  physicalMapLocation?: string | null
   bankTransferTitle?: string
   bankTransferDescription?: string
   /** Projected URL string from GROQ: qrCodeImage.asset->url */

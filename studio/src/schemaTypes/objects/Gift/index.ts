@@ -92,12 +92,11 @@ export const gift = defineType({
       description: 'Mailing address for physical gifts.',
     }),
     defineField({
-      name: 'physicalMapImage',
-      title: 'Physical Address Map Image',
-      type: 'image',
-      options: { hotspot: true },
-      fields: [{ name: 'alt', type: 'string', title: 'Alt Text' }],
-      description: 'Map image for the physical gift address.',
+      name: 'physicalMapLocation',
+      title: 'Physical Address Map',
+      type: 'string',
+      description:
+        'Paste a Google Maps iframe HTML snippet (Share → Embed a map → Copy HTML) for the physical gift address.',
     }),
     defineField({
       name: 'bankTransferTitle',
