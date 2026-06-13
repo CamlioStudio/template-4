@@ -14,4 +14,6 @@ export const importPageBuilderTypes = [
   { type: 'journey' },
   { type: 'bridesmaidsGroomsmen' },
   { type: 'wishes' },
+  { type: 'locationVenue' },
+  { type: 'gift' },
 ]

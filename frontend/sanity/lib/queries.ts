@@ -121,6 +121,28 @@ export const getPageQuery = defineQuery(`
           heading,
           "highlights": highlights[]{ char, charIndex },
           "quotes": quotes[]{ quote, author },
+        },
+        _type == "locationVenue" => {
+          title,
+          "highlights": highlights[]{ char, charIndex },
+          venueName,
+          time,
+          "mapImage": mapImage.asset->url,
+          "images": images[].asset->url,
+          imagesPosition,
+        },
+        _type == "gift" => {
+          heading,
+          "highlights": highlights[]{ char, charIndex },
+          description,
+          "decorImage": decorImage.asset->url,
+          physicalGiftTitle,
+          physicalGiftDescription,
+          physicalAddress,
+          "physicalMapImage": physicalMapImage.asset->url,
+          bankTransferTitle,
+          bankTransferDescription,
+          "qrCodeImage": qrCodeImage.asset->url,
         }
       )
     }
@@ -261,6 +283,28 @@ export const getHomePageQuery = defineQuery(`
           heading,
           "highlights": highlights[]{ char, charIndex },
           "quotes": quotes[]{ quote, author },
+        },
+        _type == "locationVenue" => {
+          title,
+          "highlights": highlights[]{ char, charIndex },
+          venueName,
+          time,
+          "mapImage": mapImage.asset->url,
+          "images": images[].asset->url,
+          imagesPosition,
+        },
+        _type == "gift" => {
+          heading,
+          "highlights": highlights[]{ char, charIndex },
+          description,
+          "decorImage": decorImage.asset->url,
+          physicalGiftTitle,
+          physicalGiftDescription,
+          physicalAddress,
+          "physicalMapImage": physicalMapImage.asset->url,
+          bankTransferTitle,
+          bankTransferDescription,
+          "qrCodeImage": qrCodeImage.asset->url,
         }
       )
     }

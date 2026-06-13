@@ -208,6 +208,39 @@ export type Wishes = {
   quotes?: WishesQuote[]
 }
 
+export type LocationVenue = {
+  _type: 'locationVenue'
+  cmsTitle?: string
+  title?: string
+  highlights?: HighlightItem[] | null
+  venueName?: string
+  time?: string
+  /** Projected URL string from GROQ: mapImage.asset->url */
+  mapImage?: string | null
+  /** Projected URL strings from GROQ: images[].asset->url */
+  images?: (string | null)[]
+  imagesPosition?: string
+}
+
+export type Gift = {
+  _type: 'gift'
+  cmsTitle?: string
+  heading?: string
+  highlights?: HighlightItem[] | null
+  description?: string
+  /** Projected URL string from GROQ: decorImage.asset->url */
+  decorImage?: string | null
+  physicalGiftTitle?: string
+  physicalGiftDescription?: string
+  physicalAddress?: string
+  /** Projected URL string from GROQ: physicalMapImage.asset->url */
+  physicalMapImage?: string | null
+  bankTransferTitle?: string
+  bankTransferDescription?: string
+  /** Projected URL string from GROQ: qrCodeImage.asset->url */
+  qrCodeImage?: string | null
+}
+
 export type PageBuilderSection =
   | ContactUs
   | Hero
@@ -224,6 +257,8 @@ export type PageBuilderSection =
   | Journey
   | BridesmaidsGroomsmen
   | Wishes
+  | LocationVenue
+  | Gift
 
 export type Page = {
   _type: 'page'

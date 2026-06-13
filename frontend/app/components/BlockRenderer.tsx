@@ -16,6 +16,8 @@ import CoupleBlock from '@/app/components/blocks/Couple'
 import JourneyBlock from '@/app/components/blocks/Journey'
 import BridesmaidsGroomsmenBlock from '@/app/components/blocks/BridesmaidsGroomsmen'
 import WishesBlock from '@/app/components/blocks/Wishes'
+import LocationVenueBlock from '@/app/components/blocks/LocationVenue'
+import GiftBlock from '@/app/components/blocks/Gift'
 
 type BlockRendererProps = {
   block: PageBuilderSection
@@ -38,6 +40,8 @@ const blocks = {
   journey: JourneyBlock,
   bridesmaidsGroomsmen: BridesmaidsGroomsmenBlock,
   wishes: WishesBlock,
+  locationVenue: LocationVenueBlock,
+  gift: GiftBlock,
 } as const
 
 export function BlockRenderer({ block, index }: BlockRendererProps) {
