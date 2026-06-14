@@ -50,14 +50,18 @@ export const getPageQuery = defineQuery(`
         },
         _type == "gallery" => {
           heading,
+          "highlights": highlights[]{ char, charIndex },
           subtitle,
+          background,
           viewAllText,
           viewAllHref,
           "photos": photos[].asset->url,
         },
         _type == "rsvp" => {
           heading,
+          "highlights": highlights[]{ char, charIndex },
           subtitle,
+          variant,
         },
         _type == "quote" => {
           quote,
@@ -143,6 +147,16 @@ export const getPageQuery = defineQuery(`
           bankTransferTitle,
           bankTransferDescription,
           "qrCodeImage": qrCodeImage.asset->url,
+        },
+        _type == "blogListing" => {
+          heading,
+          "highlights": highlights[]{ char, charIndex },
+          "articles": articles[]{
+            label,
+            category,
+            href,
+            "image": image.asset->url,
+          },
         }
       )
     }
@@ -212,14 +226,18 @@ export const getHomePageQuery = defineQuery(`
         },
         _type == "gallery" => {
           heading,
+          "highlights": highlights[]{ char, charIndex },
           subtitle,
+          background,
           viewAllText,
           viewAllHref,
           "photos": photos[].asset->url,
         },
         _type == "rsvp" => {
           heading,
+          "highlights": highlights[]{ char, charIndex },
           subtitle,
+          variant,
         },
         _type == "quote" => {
           quote,
@@ -305,6 +323,16 @@ export const getHomePageQuery = defineQuery(`
           bankTransferTitle,
           bankTransferDescription,
           "qrCodeImage": qrCodeImage.asset->url,
+        },
+        _type == "blogListing" => {
+          heading,
+          "highlights": highlights[]{ char, charIndex },
+          "articles": articles[]{
+            label,
+            category,
+            href,
+            "image": image.asset->url,
+          },
         }
       )
     }

@@ -16,4 +16,5 @@ export const importPageBuilderTypes = [
   { type: 'wishes' },
   { type: 'locationVenue' },
   { type: 'gift' },
+  { type: 'blogListing' },
 ]

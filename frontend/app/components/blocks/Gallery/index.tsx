@@ -2,6 +2,8 @@
 import Image from "next/image";
 import type { Gallery } from "@/sanity.types";
 import { FlowerDecor } from "../../ui/FlowerDecor";
+import { HighlightedHeading } from "../../ui/HighlightedHeading";
+import { cn } from "../../../../sanity/lib/utils";
 
 const PHOTO_POSITIONS = [
   { left: "8.33%", top: 0, width: "33.75%", height: 400 },
@@ -25,25 +27,32 @@ export default function GalleryBlock({
   block: Gallery;
   index: number;
 }) {
-  const { heading, subtitle, viewAllText, viewAllHref, photos = [] } = block;
+  const { heading, subtitle, highlights, background, viewAllText, viewAllHref, photos = [] } = block;
+  const isTransparent = background === 'transparent'
   return (
-    <section className="overflow-hidden lg;py-20 bg-white">
-      <div className="relative flex flex-col items-center px-6 pt-24 text-center">
+    <section className={cn('overflow-hidden', 'lg:py-20', !isTransparent && 'bg-white')}>
+      <div className={cn('relative', 'flex', 'flex-col', 'items-center', 'px-6', 'pt-24', 'text-center')}>
         <FlowerDecor />
-        <h2 className="font-display text-section leading-[1.1] ">{heading}</h2>
-        <p className="mx-auto mt-3 max-w-md">{subtitle}</p>
+        <HighlightedHeading
+          as="h2"
+          text={heading ?? ''}
+          highlights={highlights}
+          className={cn('font-display', 'text-section', 'leading-[1.1]')}
+          highlightClassName="font-script text-[6rem] leading-[0.7]"
+        />
+        <p className={cn('mx-auto', 'mt-3', 'max-w-md')}>{subtitle}</p>
       </div>
 
       {/* Desktop scattered layout */}
       <div
-        className="relative mx-auto mt-16 hidden max-w-360 lg:block"
+        className={cn('relative', 'mx-auto', 'mt-16', 'hidden', 'max-w-360', 'lg:block')}
         style={{ height: "877px" }}
       >
         {photos?.length > 0 &&
           PHOTO_POSITIONS.map(({ left, top, width, height }, i) => (
             <div
               key={i}
-              className="absolute overflow-hidden rounded-2xl"
+              className={cn('absolute', 'overflow-hidden', 'rounded-2xl')}
               style={{ left, top, width, height, background: GRADIENTS[i] }}
             >
               {photos[i] && (
@@ -59,7 +68,7 @@ export default function GalleryBlock({
       </div>
 
       {/* Mobile 2-column staggered grid */}
-      <div className="mt-12 grid grid-cols-2 gap-4 px-4 sm:px-6 lg:hidden">
+      <div className={cn('mt-12', 'grid', 'grid-cols-2', 'gap-4', 'px-4', 'sm:px-6', 'lg:hidden')}>
         {photos?.length > 0 && photos.slice(0, 4).map((photo, i) => (
           <div
             key={i}
@@ -81,14 +90,14 @@ export default function GalleryBlock({
         ))}
       </div>
 
-      <div className="mt-16 text-center">
+      {viewAllText && <div className={cn('mt-16', 'text-center')}>
         <a
           href={viewAllHref}
-          className="inline-flex rounded-full px-8 py-3 text-sm  transition-colors bg-accent hover:bg-sand"
+          className={cn('inline-flex', 'rounded-full', 'px-8', 'py-3', 'text-sm', 'transition-colors', 'bg-accent', 'hover:bg-sand')}
         >
           {viewAllText}
         </a>
-      </div>
+      </div>}
     </section>
   );
 }

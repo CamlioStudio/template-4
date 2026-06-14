@@ -1,16 +1,15 @@
-import { ImagesIcon } from '@sanity/icons'
+import { DocumentTextIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
-import { mediaAssetSource } from 'sanity-plugin-media'
 
-export const gallery = defineType({
-  name: 'gallery',
-  title: 'Gallery',
+export const blogListing = defineType({
+  name: 'blogListing',
+  title: 'Blog Listing',
   type: 'object',
-  icon: ImagesIcon,
+  icon: DocumentTextIcon,
   preview: {
     select: { title: 'heading' },
     prepare({ title }: { title?: string }) {
-      return { title: `Gallery: ${title || 'Untitled'}` }
+      return { title: `Blog Listing: ${title || 'Untitled'}` }
     },
   },
   fields: [
@@ -20,7 +19,7 @@ export const gallery = defineType({
       type: 'string',
       description: 'Internal label used in Studio only.',
     }),
-    defineField({ name: 'heading', title: 'Heading', type: 'string' }),
+    defineField({ name: 'heading', title: 'Page Heading', type: 'string' }),
     defineField({
       name: 'highlights',
       title: 'Highlight Characters',
@@ -52,28 +51,32 @@ export const gallery = defineType({
         },
       ],
     }),
-    defineField({ name: 'subtitle', title: 'Subtitle', type: 'text', rows: 2 }),
     defineField({
-      name: 'background',
-      title: 'Background',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'White', value: 'white' },
-          { title: 'Transparent', value: 'transparent' },
-        ],
-        layout: 'radio',
-      },
-      initialValue: 'white',
-      description: 'Background colour of the gallery section.',
-    }),
-    defineField({ name: 'viewAllText', title: 'View All Text', type: 'string' }),
-    defineField({ name: 'viewAllHref', title: 'View All Link', type: 'string' }),
-    defineField({
-      name: 'photos',
-      title: 'Photos',
+      name: 'articles',
+      title: 'Articles',
       type: 'array',
-      of: [{ type: 'image', options: { hotspot: true, sources: [mediaAssetSource] } }],
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({ name: 'label', title: 'Title', type: 'string' }),
+            defineField({ name: 'category', title: 'Category', type: 'string', description: 'e.g. "Wedding Tips"' }),
+            defineField({ name: 'href', title: 'Link URL', type: 'string', description: 'URL this article links to.' }),
+            defineField({
+              name: 'image',
+              title: 'Cover Image',
+              type: 'image',
+              options: { hotspot: true },
+            }),
+          ],
+          preview: {
+            select: { title: 'label', subtitle: 'category' },
+            prepare({ title, subtitle }: { title?: string; subtitle?: string }) {
+              return { title: title || 'Untitled Article', subtitle }
+            },
+          },
+        },
+      ],
     }),
   ],
 })

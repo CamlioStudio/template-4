@@ -85,6 +85,9 @@ export type Gallery = {
   _type: 'gallery'
   cmsTitle?: string
   heading?: string
+  highlights?: HighlightItem[] | null
+  /** 'white' | 'transparent' — controls the section background */
+  background?: 'white' | 'transparent' | null
   subtitle?: string
   viewAllText?: string
   viewAllHref?: string
@@ -96,7 +99,10 @@ export type Rsvp = {
   _type: 'rsvp'
   cmsTitle?: string
   heading?: string
+  highlights?: HighlightItem[] | null
   subtitle?: string
+  /** 'elevated' = white bg + -translate-y-36 (homepage); 'flat' = transparent, no float (RSVP page) */
+  variant?: 'elevated' | 'flat' | null
 }
 
 export type Quote = {
@@ -236,6 +242,22 @@ export type Gift = {
   qrCodeImage?: string | null
 }
 
+export type BlogListingArticle = {
+  label?: string
+  category?: string
+  href?: string
+  /** Projected URL string from GROQ: image.asset->url */
+  image?: string | null
+}
+
+export type BlogListing = {
+  _type: 'blogListing'
+  cmsTitle?: string
+  heading?: string
+  highlights?: HighlightItem[] | null
+  articles?: BlogListingArticle[]
+}
+
 export type PageBuilderSection =
   | ContactUs
   | Hero
@@ -254,6 +276,7 @@ export type PageBuilderSection =
   | Wishes
   | LocationVenue
   | Gift
+  | BlogListing
 
 export type Page = {
   _type: 'page'

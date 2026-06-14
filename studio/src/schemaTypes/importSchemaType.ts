@@ -15,6 +15,7 @@ import { bridesmaidsGroomsmen } from './objects/BridesmaidsGroomsmen'
 import { wishes } from './objects/Wishes'
 import { locationVenue } from './objects/LocationVenue'
 import { gift } from './objects/Gift'
+import { blogListing } from './objects/BlogListing'
 
 export const importSchemaTypes = [
   contactUs,
@@ -34,4 +35,5 @@ export const importSchemaTypes = [
   wishes,
   locationVenue,
   gift,
+  blogListing,
 ]
